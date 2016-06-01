@@ -1,6 +1,8 @@
 # Usage
 This 'Backup to WebDav docker' will mount a webdav share, and uses RSYNC to sync the files to the webdav. Because we need the mount kernal commands this container needs to run __--privileged__!
 
+This image can be found on [docker hub](https://hub.docker.com/r/daanoz/webdav-backup/).
+
 The following 4 environment variables are required for the container to run:
 
     WEBDAV_URL=<webdavurl>
