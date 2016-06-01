@@ -25,7 +25,7 @@ sleep 10
 umount.davfs /mnt/webdav
 
 echo "Starting credential cleanup"
-echo "" > /etc/davfs/secrets
+echo "" > /etc/davfs2/secrets
 export WEBDAV_USER=""
 export WEBDAV_PASS=""
 echo "Done!"
