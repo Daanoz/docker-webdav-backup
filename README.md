@@ -1,7 +1,7 @@
 # Usage
 This 'Backup to WebDav docker' will mount a webdav share, and uses rsync to sync the files to the webdav. Because we need the mount kernel commands this container needs to run __--privileged__!
 
-This image can be found on [docker hub](https://hub.docker.com/r/daanoz/webdav-backup/).
+This image can be found on [docker hub](https://hub.docker.com/r/fdock/webdav-backup/).
 
 # Environment Variables
 
