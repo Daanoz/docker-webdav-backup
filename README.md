@@ -15,7 +15,7 @@ The following 5 environment variables are required for the container to run:
 
 Optionally the rsync parameters can be overridden, by default it runs as:
 
-    RSYNC_PARAMS="--archive --numeric-ids --delete --delete-delay --inplace --progress"
+    RSYNC_PARAMS="--archive --numeric-ids --delete --delete-delay"
 
 # Direction of Synchronization
 

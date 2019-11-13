@@ -11,7 +11,7 @@ RUN apt-get update && \
 RUN mkdir /mnt/webdav/
 RUN mkdir /mnt/backup/
 
-ENV RSYNC_PARAMS "--archive --numeric-ids --delete --delete-delay --inplace --progress"
+ENV RSYNC_PARAMS "--archive --numeric-ids --delete --delete-delay"
 
 COPY entrypoint.sh /
 RUN chmod +x entrypoint.sh
