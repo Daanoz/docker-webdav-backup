@@ -1,6 +1,8 @@
 #!/bin/bash
 
-if [[ -n "$WEBDAV_URL" ]] && [[ -n "$WEBDAV_USER" ]] && [[ -n "$WEBDAV_PASS" ]] && [[ -n "$TARGET_DIR" ]]
+set -e
+
+if [[ -n "$WEBDAV_URL" ]] && [[ -n "$WEBDAV_USER" ]] && [[ -n "$WEBDAV_PASS" ]]
 then
 	echo "Starting mount of $WEBDAV_URL"
 else
@@ -13,13 +15,14 @@ echo "/mnt/webdav $WEBDAV_USER \"$WEBDAV_PASS\"" >> /etc/davfs2/secrets
 
 mount /mnt/webdav
 
-mkdir -p /mnt/webdav/$TARGET_DIR
+BACKUP_FROM=${BACKUP_FROM:=/mnt/webdav/}
+BACKUP_TO=${BACKUP_TO:=/mnt/backup/}
 
-echo "Starting sync procedure to $TARGET_DIR"
-rsync $RSYNC_PARAMS /mnt/backup/ /mnt/webdav/$TARGET_DIR
+echo "Starting sync procedure from ${BACKUP_FROM} to ${BACKUP_TO}"
+rsync $RSYNC_PARAMS ${BACKUP_FROM} ${BACKUP_TO}
 
-echo "Waiting davfs to trigger for file upload, continue in 10s"
-sleep 10
+echo "Syncing filesystems"
+sync
 
 # unmount, and wait for transfers
 umount.davfs /mnt/webdav
@@ -28,4 +31,6 @@ echo "Starting credential cleanup"
 echo "" > /etc/davfs2/secrets
 export WEBDAV_USER=""
 export WEBDAV_PASS=""
+
 echo "Done!"
+
